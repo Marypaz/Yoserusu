@@ -193,7 +193,7 @@ public:
 		STRONG_ASSERT( mCurrentVertexBuffer && "VertexBuffer is not set." );
 		STRONG_ASSERT( mCurrentShader && "Shader is not set." );
 		//シェーダセット
-		mCurrentShader->mShader->setShader( mDevice );
+		mCurrentShader->setShader( mDevice );
 		//頂点バッファセット		
 		UINT stride = mCurrentVertexBuffer->mSize;
 	    UINT offset = 0;
@@ -242,7 +242,7 @@ public:
 		STRONG_ASSERT( mCurrentIndexBuffer && "IndexBuffer is not set." );
 		STRONG_ASSERT( mCurrentShader && "Shader is not set." );
 		//シェーダセット
-		mCurrentShader->mShader->setShader( mDevice );
+		mCurrentShader->setShader( mDevice );
 		//頂点バッファセット
 		UINT stride = mCurrentVertexBuffer->mSize;
 	    UINT offset = 0;

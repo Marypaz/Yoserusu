@@ -1,6 +1,6 @@
 #include "Mashiro/Mashiro.h"
 #include "Mashiro/Kinect/KinectManager.h"
-#include "Mashiro/Graphics/Texture.h"
+#include "Mashiro/Graphics/Bitmap.h"
 #include "Mashiro/Math/Vector2.h"
 
 #include "Mashiro/Kinect/src/KinectManagerImpl.h"
@@ -31,11 +31,11 @@ void Manager::update(){
 	gManagerImpl->update();
 }
 
-Graphics::Texture Manager::colorTexture() const {
+Graphics::Bitmap Manager::colorTexture() const {
 	return gManagerImpl->colorTexture();
 }
 
-Graphics::Texture Manager::depthTexture() const {
+Graphics::Bitmap Manager::depthTexture() const {
 	return gManagerImpl->depthTexture();
 }
 

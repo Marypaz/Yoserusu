@@ -23,7 +23,7 @@ public:
 
 class Vertex {
 public:
-	Mashiro::Math::Vector4 mPosition; //位置
+	Mashiro::Math::Vector3 mPosition; //位置
 	Mashiro::Math::Vector3 mNormal; //法線
 	Mashiro::Math::Vector4 mColor; //頂点色
 	Mashiro::Math::Vector2 mUV; //UV
@@ -65,6 +65,13 @@ struct circleShadowConstantBuffer{
 	unsigned int gCount[ 4 ];
 	Vector4 mModelToLight[ 50 ]; //影を落とすモデルとライトを結ぶベクトル
 	Vector4 mModelPos[ 50 ]; //モデルの位置
+};
+
+struct myConstantBuffer{
+
+	//とりあえず外部から欲しいものを宣言
+	int mPart; //描画するものごとに分岐したいから
+	int mDummy;
 };
 
 }

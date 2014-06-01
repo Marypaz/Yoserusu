@@ -8,6 +8,8 @@
 #include "Game/Enum.h"
 #include "Util/SoundManager.h"
 
+#include <utility>
+
 class Ball;
 
 class Wall
@@ -31,7 +33,9 @@ private:
 	void DelWall(int color,Ball* ball);		//ï«Çó£Ç∑
 	void ResetWall();	//çƒîzíu
 
-	Mashiro::Graphics::Texture			mTexture[3];
+	std::pair< 
+		Mashiro::Graphics::Texture, 
+		Mashiro::Math::Vector3 > mTextureCol[ 3 ];
 	Mashiro::Scene::Model			mModel[4];
 	Mashiro::Math::Vector3			mPos[4];
 	Mashiro::Math::Vector3			mVec[4];

@@ -14,7 +14,7 @@ mNextSequence( NEXT_NONE ),
 mChild( 0 ),
 mState( 0 ){
 	//ç≈èâÇÕReady
-	mChild = new Loading();
+	mChild = NEW Loading();
 }
 
 ParentGame::~ParentGame(){
@@ -28,7 +28,7 @@ void ParentGame::update( GrandParent* parent ){
 	switch ( mNextSequence ){
 		case NEXT_LOAD:
 			SAFE_DELETE( mChild );
-			mChild = new Loading();
+			mChild = NEW Loading();
 			break;
 		case NEXT_AUTHE:
 			SAFE_DELETE( mChild );
@@ -36,11 +36,11 @@ void ParentGame::update( GrandParent* parent ){
 			break;
 		case NEXT_PLAY:
 			SAFE_DELETE( mChild );
-			mChild = new Play();
+			mChild = NEW Play();
 			break;
 		case NEXT_RESULT:
 			SAFE_DELETE( mChild );
-			mChild = new Result();
+			mChild = NEW Result();
 			break;
 	}
 	mNextSequence = NEXT_NONE;
@@ -57,7 +57,7 @@ void ParentGame::startLoading(){
 	if( mState ){
 		SAFE_DELETE( mState );
 	}
-	mState = new State();
+	mState = NEW State();
 }
 
 State* ParentGame::getState(){

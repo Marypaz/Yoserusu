@@ -30,13 +30,13 @@ timer( 0 ),
 mBack( 0 ), 
 mLockOn( 0 ){
 	//オブジェクトの生成
-	ball = new Ball();
-	wall = new Wall();
-	lArm= new ArmLeft();
-	rArm = new ArmRight();
-	timer = new Timer();
-	mBack = new BackGround();
-	mLockOn = new LockOn();
+	ball = NEW Ball();
+	wall = NEW Wall();
+	lArm= NEW ArmLeft();
+	rArm = NEW ArmRight();
+	timer = NEW Timer();
+	mBack = NEW BackGround();
+	mLockOn = NEW LockOn();
 }
 
 void State::init(){

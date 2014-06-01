@@ -38,7 +38,7 @@ public:
 		}
 	}
 	Impl( int width, int height, long stride, ID2D1RenderTarget* backBuffer )
-		: mBitmap( 0 ), mDecoder( 0 ), mConverter( 0 ){
+		: mWidth(width), mHeight(height), mBitmap( 0 ), mDecoder( 0 ), mConverter( 0 ){
 		HRESULT hr = S_OK;
 		//一応解放
 		SafeRelease(&mBitmap);
@@ -56,17 +56,14 @@ public:
 			STRONG_ASSERT( hr != E_FAIL && "ビットマップの生成に失敗" );
 		}
 	}
-	//空
-	Impl() : mBitmap(), mDecoder(), mConverter(), mStride(){
-	}
 	//unsigned char*から
 	void copyFromMemory( unsigned char* byte ){
-		/*HRESULT hr = S_OK;
-		hr = mBitmap->CopyFromMemory( NULL, byte, mStride );
+		HRESULT hr = S_OK;
+		hr = mBitmap->CopyFromMemory( NULL, byte, mWidth * sizeof(long) );
 		if( FAILED( hr ) ){
 			hr = E_FAIL;
 			STRONG_ASSERT( hr != E_FAIL && "ビットマップの生成に失敗" );
-		}*/
+		}
 	}
 	~Impl(){
 		SafeRelease(&mBitmap);
@@ -123,6 +120,9 @@ public:
 	LONG mStride; //	ストライド
 	IWICBitmapDecoder* mDecoder;
 	IWICFormatConverter* mConverter;
+
+	int mWidth;
+	int mHeight;
 };
 
 }

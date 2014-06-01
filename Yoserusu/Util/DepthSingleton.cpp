@@ -15,7 +15,7 @@ DepthSingleton* DepthSingleton::instance() {
 
 void DepthSingleton::create() {
 	ASSERT( !mInstance );
-	mInstance = new DepthSingleton();
+	mInstance = NEW DepthSingleton();
 }
 
 void DepthSingleton::destory() {

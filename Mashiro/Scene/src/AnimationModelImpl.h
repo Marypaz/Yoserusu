@@ -43,7 +43,6 @@ public:
 	mBoneNum( data->mBoneCount ),
 	mMaterialColorNumber( -1 ),
 	mRenderTexMaterialNumber( -1 ){
-		mShader = Mashiro::Graphics::Shader::create( SHADER_SKINMESH );
 		//データを移していく
 		mVertexBuffer = data->mVertex;
 		mIndexBuffer = NEW IndexBuffer[ mMaterialCount ];
@@ -71,7 +70,6 @@ public:
 	mBoneNum( data->mBoneCount ),
 	mMaterialColorNumber( -1 ),
 	mRenderTexMaterialNumber( -1 ){
-		mShader = Mashiro::Graphics::Shader::create( SHADER_SKINMESH );
 		//データを移していく
 		mVertexBuffer = data->mVertexBuffer;
 		mIndexBuffer = NEW IndexBuffer[ mMaterialCount ];

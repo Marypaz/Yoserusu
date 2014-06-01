@@ -30,7 +30,7 @@ public:
 	const Vector3* angle() const;
 	const Vector3* scale() const;
 	const Vector3* color() const;
-	const Matrix* worldMatrix() const;	
+	Matrix worldMatrix() const;	
 	float transparaency() const;
 	
 

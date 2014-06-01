@@ -11,6 +11,8 @@
 
 #include "Util/ModelLoader.h"
 
+#include "Shader/include/CocTrans.h"
+
 #define PI 3.14159265f
 
 using namespace Mashiro;
@@ -18,15 +20,17 @@ using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
 namespace {
-	Mashiro::Graphics::Texture lTexe[ 3 ];
 	Mashiro::Math::Vector3 lPos[ 4 ];
 };
 
 Wall::Wall()
 {
-	lTexe[ 0 ] = Graphics::Texture::create( "res/image/gato_color_R_UPZ_R.png" );
-	lTexe[ 1 ] = Graphics::Texture::create( "res/image/gato_color_R_UPZ_B.png" );
-	lTexe[ 2 ] = Graphics::Texture::create( "res/image/gato_color_R_UPZ_G.png" );
+	mTextureCol[ 0 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_R.png" );
+	mTextureCol[ 0 ].second = Vector3( 1, 0, 0 );
+	mTextureCol[ 1 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_B.png" );
+	mTextureCol[ 1 ].second = Vector3( 0, 0, 1 );
+	mTextureCol[ 2 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_G.png" );
+	mTextureCol[ 2 ].second = Vector3( 0, 1, 0 );
 
 	lPos[ 0 ] = Vector3(-30,30,40);
 	lPos[ 1 ] = Vector3(40,40,40);
@@ -40,9 +44,7 @@ Wall::Wall()
 	mModel[2] = loader->createModel("res/model/WallLeftBottom.pmd");
 	mModel[3] = loader->createModel("res/model/WallRightBottom.pmd");
 
-	for(int i=0; i<4; i++)
-	{
-		if(i < 3) mTexture[i] =lTexe[i];
+	for(int i=0; i<4; i++){
 		mPos[i] = lPos[i];
 		mModel[i].setAngle(Vector3(0));
 		mModel[i].setScale(Vector3(1.f));
@@ -66,9 +68,6 @@ Wall::Wall()
 
 Wall::~Wall()
 {
-	for( int i = 0; i < 3; ++i ){
-		lTexe[ i ].release();
-	}
 }
 
 void Wall::Animation(Ball* ball)
@@ -83,10 +82,24 @@ void Wall::Draw( bool timer )
 {
 	Graphics::Sprite sp = Graphics::Sprite::instance();
 
+	CocTrans* coc = CocTrans::instance();
+	CocTrans::ConstantBuffer* cb = NULL;
+	if( coc->lock( (void**)&cb ) ){
+		cb->mDrawType = CocTrans::TYPE_WALL;
+		coc->unLock();
+	}
+	cb = nullptr;
+	Graphics::Manager().setShader( CocTrans::instance()->shader() );
+
 	for(int i = 0; i < 4; i++)
 	{
 		mModel[i].setPosition(mPos[i]);
-		mModel[ i ].setTexture( mTexture[ rand ] );
+		mModel[ i ].setTexture( mTextureCol[ rand ].first );
+		mModel[ i ].setColor( mTextureCol[ rand ].second );
+
+		Vector4 light = coc->instance()->worldLight( mModel[ i ].worldMatrix() );	
+		Graphics::Manager().setLight( light );
+
 		mModel[i].draw();
 	}
 

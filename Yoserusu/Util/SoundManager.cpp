@@ -32,7 +32,7 @@ SoundManager* SoundManager::instance(){
 
 void SoundManager::create(){
 	ASSERT( !mInstance );
-	mInstance = new SoundManager();
+	mInstance = NEW SoundManager();
 }
 
 void SoundManager::destory(){
@@ -43,8 +43,8 @@ void SoundManager::destory(){
 SoundManager::SoundManager() :
 mSePlayerPos( 0 ){
 	//ファイルロード開始。
-	mBgmWaves = new Mashiro::Sound::MusicSource[ BGM_MAX ];
-	mSeWaves = new Mashiro::Sound::MusicSource[ SE_MAX ];
+	mBgmWaves = NEW Mashiro::Sound::MusicSource[ BGM_MAX ];
+	mSeWaves = NEW Mashiro::Sound::MusicSource[ SE_MAX ];
 	for( int i = 0; i < BGM_MAX; ++i ){
 		mBgmWaves[ i ] = Mashiro::Sound::MusicSource::create( gBGM[ i ] );
 	}
@@ -63,7 +63,11 @@ SoundManager::~SoundManager(){
 
 void SoundManager::playBgm( Bgm bgm ){
 	mBgmPlayer = Sound::Player::create( mBgmWaves[ bgm ] );
+#if _DEBUG
 	mBgmPlayer.setVolum( 0.f );
+#else
+	mBgmPlayer.setVolum( 1.f );
+#endif
 	mBgmPlayer.start( 0, 0 ); //ループ再生
 }
 
@@ -75,6 +79,11 @@ void SoundManager::stopBgm(){
 
 void SoundManager::playSe( Se se ){
 	mSePlayers[ mSePlayerPos ] = Sound::Player::create( mSeWaves[ se ] );
+#if _DEBUG
+	mSePlayers[ mSePlayerPos ].setVolum( 0.f );
+#else
+	mSePlayers[ mSePlayerPos ].setVolum( 1.f );
+#endif
 	mSePlayers[ mSePlayerPos ].start(); //再生
 	++mSePlayerPos;
 	//巻き戻し

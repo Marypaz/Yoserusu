@@ -9,6 +9,11 @@
 #include <sstream>
 
 #include "Lua/LuaManager.h"
+
+#include "Mashiro/Input/InputManager.h"
+#include "Mashiro/Input/Keyboard.h"
+#include "Mashiro/Input/Mouse.h"
+
 using namespace std;
 
 using namespace Mashiro;
@@ -30,10 +35,7 @@ Authe::~Authe() {
 }
 
 void Authe::draw()  {
-
-	
-	
-	/*Graphics::Manager m = Graphics::Manager::instance();
+	Graphics::Manager m = Graphics::Manager::instance();
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	//”FØ”ÍˆÍ
 	sp.setTrance( 1.f );
@@ -86,9 +88,8 @@ void Authe::draw()  {
 	sp.setColor( Vector3( 0, 0, 1 ) );
 	sp.setTrance( 1.f );
 	sp.setFillEllipse( posL, Vector2( 30, 30 ) );
-	sp.draw();*/
+	sp.draw();
 
-	LuaManager::instance()->loadLua( "Lua/Authe.lua" );
 }
 
 bool Authe::handCheck()  {

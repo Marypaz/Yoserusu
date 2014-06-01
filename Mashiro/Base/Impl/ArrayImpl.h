@@ -17,7 +17,7 @@ mSize( size ){
 	if ( size > 0 ){
 		mElements = static_cast< T* >( OPERATOR_NEW( sizeof( T ) * mSize ) );
 		for ( int i = 0; i < mSize; ++i ){
-			new ( &mElements[ i ] ) T;
+			NEW ( &mElements[ i ] ) T;
 		}
 	}
 }
@@ -28,7 +28,7 @@ mSize( size ){
 	if ( size > 0 ){
 		mElements = static_cast< T* >( OPERATOR_NEW( sizeof( T ) * mSize ) );
 		for ( int i = 0; i < mSize; ++i ){
-			new ( &mElements[ i ] ) T( a );
+			NEW ( &mElements[ i ] ) T( a );
 		}
 	}
 }
@@ -42,7 +42,7 @@ template< class T > inline void Array< T >::setSize( int size ){
 	if ( !mElements ){ //‹ó
 		mElements = static_cast< T* >( OPERATOR_NEW( sizeof( T ) * size ) );
 		for ( int i = 0; i < size; ++i ){
-			new ( &mElements[ i ] ) T;
+			NEW ( &mElements[ i ] ) T;
 		}
 	}else{
 		STRONG_ASSERT( ( size <= mSize ) && "Array::setSize() : extension is not supperted." );

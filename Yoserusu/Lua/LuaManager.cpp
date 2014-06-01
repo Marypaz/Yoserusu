@@ -3,13 +3,14 @@
 #include "luabind/luabind.hpp"
 #include "LuaManager.h"
 #include "Util/Sprite.h"
+#include "Game/Enum.h"
 using namespace Mashiro;
 
 LuaManager* LuaManager::mInstance = nullptr;
 
 void LuaManager::create(){
 	ASSERT( !mInstance );
-	mInstance = new LuaManager();
+	mInstance = NEW LuaManager();
 }
 
 void LuaManager::destory(){
@@ -60,12 +61,12 @@ void LuaManager::loadLua( const char* lua ){
 	lua_settop(mLuaState,top);
 }
 
-void LuaManager::runLua( const char* luascpritName, int numArgs, int numReturn ){
-	lua_getglobal(mLuaState, luascpritName);
-	int ret = lua_pcall(mLuaState , numArgs,  numReturn, NULL);
-	if (ret != 0) {
-		//ÉGÉâÅ[èàóù
-		printf("error:%s\n", lua_tostring(mLuaState,-1) );
-		lua_pop(mLuaState,1);
-	}
+void LuaManager::runLua( const char* className, const char* functionName ){
+	::lua_pcall( mLuaState, 0, 0, 0 );
+	::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
+	
+	assert(::luabind::type(tbl) == LUA_TTABLE);
+	assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
+
+	luabind::call_function<void>(tbl[functionName],tbl);
 }

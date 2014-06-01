@@ -4,6 +4,13 @@
 #include "Util/DepthSingleton.h"
 #include "Game/Ball.h"
 #include "Util/ModelLoader.h"
+#include "Shader/include/CocTrans.h"
+
+#include "Mashiro/Math/Matrix.h"
+#include "Mashiro/Math/Vector3.h"
+#include "Mashiro/Math/Vector4.h"
+using namespace Mashiro;
+using namespace Mashiro::Math;
 
 Ball::Ball() : mode( Normal ), pos( 20 ), count( 3 ) {	
 	//‰Šú[“x’l‚ð‚Q‚T‚ÉÝ’è
@@ -136,14 +143,22 @@ Ball::~Ball(){
 }
 
 void Ball::Draw(Mashiro::Graphics::Texture tex10, Mashiro::Graphics::Texture tex01){
-	//Graphics::Manager::instance().setShader( Graphics::SHADER_BALL );
+	CocTrans* coc = CocTrans::instance();
+	CocTrans::ConstantBuffer* cb = NULL;
+	if( coc->lock( (void**)&cb ) ){
+		cb->mDrawType = CocTrans::TYPE_BALL;
+		coc->unLock();
+	}
+	cb = nullptr;
+	Graphics::Manager().setShader( CocTrans::instance()->shader() );
 	
 	mBall.setTexture( tex01 );
 	Graphics::Manager::instance().setTexture( tex10, 1 );
-	mBall.draw();
-
-	//Graphics::Manager::instance().setShader( Graphics::SHADER_COCTRANS );
 	
+	Vector4 light = coc->instance()->worldLight( mBall.worldMatrix() );	
+	Graphics::Manager().setLight( light );
+	mBall.setColor( Vector3( 0.5, 0.5, 0.5 ) );
+	mBall.draw();	
 }
 
 int Ball::Color(){ 

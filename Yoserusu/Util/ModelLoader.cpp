@@ -16,7 +16,7 @@ ModelLoader* ModelLoader::instance() {
 
 void ModelLoader::create() {
 	ASSERT( !mInstance );
-	mInstance = new ModelLoader();
+	mInstance = NEW ModelLoader();
 }
 
 void ModelLoader::destory() {

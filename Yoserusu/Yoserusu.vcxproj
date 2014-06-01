@@ -149,11 +149,17 @@
     <ClInclude Include="Sequence\Game\Result.h" />
     <ClInclude Include="Sequence\Parent.h" />
     <ClInclude Include="Sequence\Title.h" />
+    <ClInclude Include="Shader\include\CocTrans.h" />
+    <ClInclude Include="Shader\include\ShaderBase.h" />
     <ClInclude Include="Util\DataBase.h" />
     <ClInclude Include="Util\DepthSingleton.h" />
     <ClInclude Include="Util\ModelLoader.h" />
     <ClInclude Include="Util\SoundManager.h" />
     <ClInclude Include="Util\Sprite.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lua\Authe.lua" />
+    <None Include="Shader\hlsl\CocTrans.fx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

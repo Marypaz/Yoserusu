@@ -17,6 +17,8 @@
 
 #include "Util/DataBase.h"
 
+#include "Shader/include/CocTrans.h"
+
 using namespace Mashiro::Math;
 using namespace Mashiro::Graphics;
 
@@ -38,12 +40,12 @@ Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCoun
 
 	mTitleBitmap = Mashiro::Graphics::Bitmap::create( "res/image/titile.png" );
 
-	mHr = new ArmRight();
-	mHl = new ArmLeft();
+	mHr = NEW ArmRight();
+	mHl = NEW ArmLeft();
 	Color = 0;
 	isTitle = false;
 	mKeep = false;
-	mBack = new BackGround();
+	mBack = NEW BackGround();
 	isEnd = false;
 }
 
@@ -71,6 +73,14 @@ void Title::titledraw(){
 	sp.setBitmap( mTitleBitmap );
 	sp.setBitmapRectangle(Vector2( 90, 80 ) );
 	sp.draw();
+
+	CocTrans* coc = CocTrans::instance();
+	CocTrans::ConstantBuffer* cb = NULL;
+	if( coc->lock( (void**)&cb ) ){
+		cb->mDrawType = CocTrans::TYPE_BALL;
+		coc->unLock();
+	}
+	Graphics::Manager().setShader( CocTrans::instance()->shader() );
 		
 	//3D•\¦
 	//ƒ{[ƒ‹

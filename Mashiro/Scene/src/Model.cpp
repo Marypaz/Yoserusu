@@ -99,10 +99,9 @@ const Vector3* Model::position() const {
 	return &mImpl->mPosition;
 }
 
-const Matrix* Model::worldMatrix() const
-{
+Matrix Model::worldMatrix() const {
 	ASSERT( mImpl && "Graphics::Model : This is empty Object" );
-	return  &mImpl->worldMatrix();
+	return  mImpl->worldMatrix();
 }
 
 

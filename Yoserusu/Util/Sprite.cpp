@@ -22,3 +22,12 @@ void SpriteUtil::draw(int x, int y) {
 	sp.setBitmapRectangle( Vector2( x, y ) );
 	sp.draw();
 }
+
+void SpriteUtil::draw(const Bitmap& bitmap) {
+	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
+	sp.setColor( Vector3( 0, 0, 1 ) );
+	sp.setTrance( 1.f );
+	sp.setBitmap( bitmap );
+	sp.setBitmapRectangle( Vector2( 0, 0 ) );
+	sp.draw();
+}

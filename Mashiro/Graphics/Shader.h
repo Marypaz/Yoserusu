@@ -1,6 +1,7 @@
 #ifndef INCLUDE_MASHIRO_SHADER_SHADER_H_
 #define INCLUDE_MASHIRO_SHADER_SHADER_H_
 
+#include "Mashiro/Graphics/ShaderDesc.h"
 #include "Mashiro/Graphics/Enum.h"
 
 namespace Mashiro{
@@ -9,7 +10,7 @@ namespace Graphics{
 class Shader {
 public:
 public:
-	static Shader create( ShaderType shaderType );
+	static Shader create( ShaderFile shaderFile, ElementDesc desc[], unsigned int size, size_t constantBufferSize );
 	bool lock( void** );
 	void unlock();
 

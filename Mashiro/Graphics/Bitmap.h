@@ -10,8 +10,9 @@ public:
 	static Bitmap create( const char* fileName );
 	//ビットマップイメージを作成
 	static Bitmap create( int width, int height, long stride );
-	//BYTE配列からビットマップイメージへ展開
-	static Bitmap create();
+
+	//unsigned char*からコピー
+	void copyFromMemory( unsigned char* byte );
 
 	//サイズ
 	int height() const;

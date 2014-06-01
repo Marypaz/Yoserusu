@@ -1,6 +1,10 @@
 #ifndef INCLUDE_MASHIRO_KINECT_MANAGER_IMPL_H_
 #define INCLUDE_MASHIRO_KINECT_MANAGER_IMPL_H_
 
+#include <Windows.h>
+#include <NuiApi.h>
+#include <stdio.h>
+
 #include "Mashiro/Mashiro.h"
 #include "Mashiro/Kinect/KinectManager.h"
 #include "Mashiro/Math/Vector2.h"
@@ -8,11 +12,6 @@
 #include "Mashiro/Threading/Event.h"
 #include "Mashiro/Graphics/Bitmap.h"
 #include "Mashiro/Graphics/src/BitmapImpl.h"
-
-#include <Windows.h>
-#include <NuiApi.h>
-#include <stdio.h>
-
 
 using namespace Mashiro;
 using namespace Mashiro::Graphics;
@@ -34,7 +33,7 @@ public:
 		HRESULT hr;
 		createInstance();
 		if( NULL != mNuiSensor ){
-			DWORD flag =  NUI_INITIALIZE_FLAG_USES_DEPTH | NUI_INITIALIZE_FLAG_USES_SKELETON;
+			DWORD flag =  NUI_INITIALIZE_FLAG_USES_DEPTH | NUI_INITIALIZE_FLAG_USES_SKELETON | NUI_INITIALIZE_FLAG_USES_COLOR;
 			if( SUCCEEDED( mNuiSensor->NuiInitialize( flag ) ) ){
 
 				hr = mNuiSensor->NuiImageStreamOpen(
@@ -66,8 +65,8 @@ public:
 		}
 		mDepthPixels = NEW BYTE[ w * h * 4]; 
 
-		mCameraBitmap = NEW Bitmap::Impl();
-		mDepthBitmap = NEW Bitmap::Impl();
+		mCameraBitmap = Bitmap::create( 640, 480, 0 );
+		mDepthBitmap = Bitmap::create( 640, 480, 0 );
 	}
 	void createInstance(){
 		HRESULT hr;
@@ -100,8 +99,6 @@ public:
 			mNuiSensor->NuiShutdown();
 		}
 		mNuiSensor = 0;
-		SAFE_DELETE( mDepthBitmap );
-		SAFE_DELETE( mCameraBitmap );
 	}
 	//更新
 	void update(){
@@ -130,7 +127,7 @@ public:
 		texture->LockRect( 0, &lockedRect, NULL, 0 );
 
 		if( lockedRect.Pitch != 0 ){
-			mCameraBitmap->copyFromMemory( static_cast< BYTE* >( lockedRect.pBits ) );
+			mCameraBitmap.copyFromMemory( static_cast< BYTE* >( lockedRect.pBits ) );
 		}
 		//情報をロック解除
 		texture->UnlockRect( 0 );
@@ -188,7 +185,7 @@ public:
 				++pBufferRun;
 				i++;
 			}
-			mDepthBitmap->copyFromMemory( mDepthPixels );
+			mDepthBitmap.copyFromMemory( mDepthPixels );
 		}
 
 
@@ -291,11 +288,11 @@ public:
 	void setHeight( int h ){
 		mHeight = h;
 	}
-	Texture colorTexture() {
-		return NULL;
+	Bitmap colorTexture() {
+		return mCameraBitmap;
 	}
-	Texture depthTexture() {
-		return NULL;
+	Bitmap depthTexture() {
+		return mDepthBitmap;
 	}
 	Math::Vector2 skeletonPos( int i ){
 		return mScreenPoints[ i ];
@@ -358,8 +355,8 @@ public:
 	int mWidth;
 	int mHeight;
 	//ビットマップでKinectの画像
-	Bitmap::Impl* mDepthBitmap;
-	Bitmap::Impl* mCameraBitmap;
+	Bitmap mDepthBitmap;
+	Bitmap mCameraBitmap;
 
 };
 extern KinectManagerImpl* gManagerImpl; //インスタンス

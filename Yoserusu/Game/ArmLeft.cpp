@@ -7,6 +7,8 @@
 #include "Mashiro/Kinect/KinectManager.h"
 
 #include "Util/ModelLoader.h"
+
+#include "Shader/include/CocTrans.h"
 using namespace Mashiro::Scene;
 
 ArmLeft::ArmLeft(){
@@ -99,15 +101,27 @@ void ArmLeft::Draw()
 {
 	Graphics::Manager m = Graphics::Manager::instance();
 
-	//m.setShader( Graphics::SHADER_COCTRANS );
+	CocTrans* coc = CocTrans::instance();
+	CocTrans::ConstantBuffer* cb = NULL;
+	if( coc->lock( (void**)&cb ) ){
+		cb->mDrawType = CocTrans::TYPE_ARM;
+		coc->unLock();
+	}
+	cb = nullptr;
+	m.setShader( CocTrans::instance()->shader() );
 	
 	shoulder.model.setColor( Vector3(  0.f, 0.f, 1.f ) );
 	wrist.model.setColor( Vector3( 0.f, 0.f, 1.f ) );
 	elbow.model.setColor( Vector3( 0.f, 0.f, 1.f ) );
 
-
+	Vector4 light = coc->instance()->worldLight( sworld );	
+	Graphics::Manager().setLight( light );
 	shoulder.model.draw(sworld);
+	light = coc->instance()->worldLight( hworld );	
+	Graphics::Manager().setLight( light );
 	wrist.model.draw(hworld);
+	light = coc->instance()->worldLight( eworld );	
+	Graphics::Manager().setLight( light );
 	elbow.model.draw(eworld);
 
 }

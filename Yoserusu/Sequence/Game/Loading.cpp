@@ -27,7 +27,7 @@ void LoadingThread::operator()(){
 }
 
 Loading::Loading() : mLoading( 0 ), mFade( 0 ), mFirst( false ){
-	mBack = new BackGround();
+	mBack = NEW BackGround();
 }
 
 Loading::~Loading(){
@@ -38,7 +38,7 @@ Loading::~Loading(){
 void Loading::update( ParentGame* parent ){
 	//ƒ[ƒh‚·‚é
 	if( !mFirst ){
-		mLoading = new LoadingThread( parent );
+		mLoading = NEW LoadingThread( parent );
 		//parent->startLoading();
 		mFirst = true;
 	}

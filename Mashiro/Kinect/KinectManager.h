@@ -5,7 +5,7 @@
 
 namespace Mashiro {
 	namespace Graphics {
-		class Texture;
+		class Bitmap;
 	}
 	namespace Math {
 		class Vector2;
@@ -19,9 +19,9 @@ public:
 	static Manager instance();
 
 	//RBGカラー
-	Graphics::Texture colorTexture() const;
+	Graphics::Bitmap colorTexture() const;
 	//深度情報
-	Graphics::Texture depthTexture() const;
+	Graphics::Bitmap depthTexture() const;
 	//スケルトン情報
 	Math::Vector2 skeletonPos( int i ) const;
 	//これどのスケルトン？

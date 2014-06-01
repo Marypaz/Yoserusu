@@ -53,7 +53,7 @@ void DataBase::fileOpen( const char* txt ){
 
 void DataBase::create(){
 	ASSERT( !mInstance );
-	mInstance = new DataBase();
+	mInstance = NEW DataBase();
 }
 
 void DataBase::destory(){

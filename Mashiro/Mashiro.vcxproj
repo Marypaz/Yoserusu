@@ -52,7 +52,7 @@
       <PreprocessorDefinitions>K_PLUGIN;K_FBXSDK;K_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir);$(OGG_LIB);$(DXSDK_DIR)\Include;$(KINECTSDK10_DIR)\inc;C:\Program Files\Autodesk\FBX\FBX SDK\2013.3\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DisableSpecificWarnings>4221;4006</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4226;4006;4018;4996;4345;4221</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -68,6 +68,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+      <AdditionalOptions>/ignore:4221 /ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <PostBuildEvent>
       <Command>for %%1 in ($(SolutionDir)Shaders/*.fx) do fxc.exe $(SolutionDir)Shaders/%%~n1.fx /T fx_4_0  /Fo $(SolutionDir)Shaders/%%~n1.h</Command>
@@ -125,6 +126,7 @@
     <ClInclude Include="Graphics\Model.h" />
     <ClInclude Include="Graphics\RenderTarget.h" />
     <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\ShaderDesc.h" />
     <ClInclude Include="Graphics\SpriteManager.h" />
     <ClInclude Include="Graphics\src\BitmapImpl.h" />
     <ClInclude Include="Graphics\src\IndexBufferImpl.h" />
@@ -174,20 +176,6 @@
     <ClInclude Include="Scene\src\PMDFileLoaderImpl.h" />
     <ClInclude Include="Scene\src\PrimitiveRenderImpl.h" />
     <ClInclude Include="Scene\src\SINFileLoaderImpl.h" />
-    <ClInclude Include="Shader\hlsl\Canvas.h" />
-    <ClInclude Include="Shader\hlsl\CircleShadow.h" />
-    <ClInclude Include="Shader\hlsl\CocTrans.h" />
-    <ClInclude Include="Shader\hlsl\DefferdPost.h" />
-    <ClInclude Include="Shader\hlsl\DefferdShading.h" />
-    <ClInclude Include="Shader\hlsl\Effect.h" />
-    <ClInclude Include="Shader\hlsl\Fog.h" />
-    <ClInclude Include="Shader\hlsl\Lambert.h" />
-    <ClInclude Include="Shader\hlsl\Outline.h" />
-    <ClInclude Include="Shader\hlsl\ShadowMap.h" />
-    <ClInclude Include="Shader\hlsl\ShadowScene.h" />
-    <ClInclude Include="Shader\hlsl\SkinMesh.h" />
-    <ClInclude Include="Shader\hlsl\Toon.h" />
-    <ClInclude Include="Shader\src\ShaderBase.h" />
     <ClInclude Include="Sound\AudioEffect.h" />
     <ClInclude Include="Sound\EffectParameter.h" />
     <ClInclude Include="Sound\MusicSource.h" />
@@ -242,7 +230,6 @@
     <ClCompile Include="Scene\src\PMDFileLoader.cpp" />
     <ClCompile Include="Scene\src\PrimitiveRender.cpp" />
     <ClCompile Include="Scene\src\SINFileLoader.cpp" />
-    <ClCompile Include="Shader\src\ShaderBase.cpp" />
     <ClCompile Include="Sound\src\AudioEffect.cpp" />
     <ClCompile Include="Sound\src\MusicSource.cpp" />
     <ClCompile Include="Sound\src\Player.cpp" />

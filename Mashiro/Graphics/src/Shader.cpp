@@ -6,9 +6,9 @@
 namespace Mashiro{
 namespace Graphics{
 
-Shader Shader::create( ShaderType type ){
+Shader Shader::create( ShaderFile shaderFile, ElementDesc desc[], unsigned int size, size_t constantBufferSize ){
 	Shader r;
-	r.mImpl = NEW Impl( type, gManagerImpl->dxDevice() );
+	r.mImpl = NEW Impl( shaderFile, desc, size, constantBufferSize, gManagerImpl->dxDevice() );
 	return r;
 }
 
@@ -19,7 +19,7 @@ bool Shader::lock( void** buffer ){
 
 void Shader::unlock(){
 	ASSERT( mImpl && "Graphics::IndexBuffer : This is empty object." );
-	mImpl->unlock();
+	mImpl->unLock();
 }
 
 #define TYPE Shader

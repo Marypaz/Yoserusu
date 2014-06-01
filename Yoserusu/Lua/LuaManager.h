@@ -24,11 +24,10 @@ public:
 	void loadLua( const char* lua );
 	/*
 	* @brif lua内関数実行
-	* @param const char* luaScpritName - luaの関数名
-	* @param int numArgs - 引数の数
-	* @param int numReturn - 戻り値の数
+	* @param const char* className - クラスの名前
+	* @param const char* functionName - 関数名
 	*/
-	void runLua( const char* luaScriptName, int numArgs = 0, int numReturn = 0 );
+	void runLua( const char* className, const char* functionName );
 	/*
 	* @brif lua内関数を実行したあとに値を取り出す
 	*/

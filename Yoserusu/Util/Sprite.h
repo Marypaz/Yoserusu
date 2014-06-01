@@ -9,6 +9,7 @@
 */
 class SpriteUtil{
 public:
+	SpriteUtil(){}
 	/*
 	* @brif コンストラクタ bitmapロード
 	*/
@@ -23,6 +24,10 @@ public:
 	* @param int y - y座標
 	*/
 	void draw( int x, int y );
+	/*
+	* @brif 2D描画
+	*/
+	void draw( const Mashiro::Graphics::Bitmap& bitmap );
 private:
 	Mashiro::Graphics::Bitmap mBitmap;
 };

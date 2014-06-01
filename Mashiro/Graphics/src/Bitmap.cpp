@@ -20,10 +20,8 @@ Bitmap Bitmap::create( int w, int h, long s ){
 	return r;
 }
 
-Bitmap Bitmap::create(){
-	Bitmap r;
-	r.mImpl = NEW Impl();
-	return r;
+void Bitmap::copyFromMemory( unsigned char* data ){
+	mImpl->copyFromMemory( data );
 }
 
 Bitmap::Bitmap( const Impl* ) : mImpl( 0 ){

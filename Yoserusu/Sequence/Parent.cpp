@@ -10,7 +10,7 @@ Parent* Parent::mInstance = 0;
 
 void Parent::create(){
 	ASSERT( !mInstance );
-	mInstance = new Parent();
+	mInstance = NEW Parent();
 }
 
 void Parent::destroy(){
@@ -27,7 +27,7 @@ mNextSequence( NEXT_NONE ),
 mChild( 0 ),
 mStageID( 0 ){
 	//ç≈èâÇ…çÏÇÈÇÃÇÕÉ^ÉCÉgÉã
-	mChild = new AutheScene();
+	mChild = NEW AutheScene();
 }
 
 Parent::~Parent(){
@@ -41,15 +41,15 @@ void Parent::update(){
 	switch ( mNextSequence ){
 		case NEXT_TITLE:
 			SAFE_DELETE( mChild );
-			mChild = new Title();
+			mChild = NEW Title();
 			break;
 		case NEXT_GAME:
 			SAFE_DELETE( mChild );
-			mChild = new Game::ParentGame();
+			mChild = NEW Game::ParentGame();
 			break;
 		case NEXT_AUTHE:
 			SAFE_DELETE( mChild );
-			mChild = new AutheScene();
+			mChild = NEW AutheScene();
 			break;
 	}
 	mNextSequence = NEXT_NONE; //ñﬂÇ∑

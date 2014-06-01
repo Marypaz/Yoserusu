@@ -16,6 +16,11 @@
 #include "Util/DataBase.h"
 #include "Game/Score.h"
 #include "Lua/LuaManager.h"
+
+#include "Util/Sprite.h"
+
+#include "Shader/include/CocTrans.h"
+
 #pragma warning(disable : 4099)
 
 using namespace Mashiro;
@@ -23,8 +28,6 @@ using namespace Mashiro::Math;
 using namespace Mashiro::Input;
 
 bool f = false;
-
-Graphics::Shader gShader;
 
 namespace Mashiro{
 	void WorkSpace::configure(WorkSpace::Configuration* c)
@@ -48,13 +51,17 @@ namespace Mashiro{
 			DataBase::instance()->fileOpen( "res/ini/data.txt" );
 			Sequence::Parent::create();
 			f = true;
-
-			gShader = Shader::create( ShaderType::SHADER_COCTRANS );
 		}
 
-		Graphics::Manager().setBackBufferTarget();
+		CocTrans* coc = CocTrans::instance();
+		CocTrans::ConstantBuffer* cb = NULL;
+		if( coc->lock( (void**)&cb ) ){
+			cb->mDrawType = CocTrans::TYPE_BALL;
+			coc->unLock();
+		}
+		Graphics::Manager().setShader( CocTrans::instance()->shader() );
 
-		Graphics::Manager().setShader( gShader);
+		Graphics::Manager().setBackBufferTarget();
 
 		Sequence::Parent::instance()->update();
 
@@ -74,7 +81,6 @@ namespace Mashiro{
 			ModelLoader::destory();
 			Score::destory();
 			LuaManager::destory();
-			gShader.release();
 		}
 	}
 }

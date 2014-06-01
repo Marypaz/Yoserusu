@@ -64,12 +64,6 @@
     <Filter Include="Sound\src">
       <UniqueIdentifier>{1e8a0edf-b19e-4f35-8ab5-0012f0c7b191}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sound\src\Ogg">
-      <UniqueIdentifier>{ead9ae14-02f4-4f6d-8691-fc832f68853f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sound\src\Wave">
-      <UniqueIdentifier>{b879d429-67e2-467a-be28-6fdd56c5f7d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input\include">
       <UniqueIdentifier>{a40260c9-544e-4e1f-ac89-bb570ffafa16}</UniqueIdentifier>
     </Filter>
@@ -84,9 +78,6 @@
     </Filter>
     <Filter Include="Threading\src">
       <UniqueIdentifier>{0f806a80-a8d1-45f8-81bd-829d9bea9020}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sound\src\SoundBase">
-      <UniqueIdentifier>{c66cfedf-2cba-496a-8a1c-400ffb2b5fc4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Kinect">
       <UniqueIdentifier>{41b834b0-e499-44d8-a8cf-053647b11de2}</UniqueIdentifier>
@@ -106,47 +97,8 @@
     <Filter Include="Scene\src">
       <UniqueIdentifier>{c583cdde-44d0-44e1-91ea-6e95e57da189}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{8ca9b6ad-c614-4f8d-9e23-8195d3f9e967}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\src">
-      <UniqueIdentifier>{c2b5aa54-c80f-48a9-8e0c-e46ce0131afa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\hlsl">
-      <UniqueIdentifier>{873cb074-2d63-4501-9f2b-c85fbf67d203}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sound\src\SoundBase\SoundBaseImpl.h">
-      <Filter>Sound\src\SoundBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\Wave\Wave.h">
-      <Filter>Sound\src\Wave</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\AudioEffectImpl.h">
-      <Filter>Sound\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\DecoderBase.h">
-      <Filter>Sound\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\MusicSourceImpl.h">
-      <Filter>Sound\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\PlayerImpl.h">
-      <Filter>Sound\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\src\SoundDataCreate.h">
-      <Filter>Sound\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\AudioEffect.h">
-      <Filter>Sound\include</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\MusicSource.h">
-      <Filter>Sound\include</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\Player.h">
-      <Filter>Sound\include</Filter>
-    </ClInclude>
     <ClInclude Include="Window\Resource.h">
       <Filter>Window\include</Filter>
     </ClInclude>
@@ -201,9 +153,6 @@
     <ClInclude Include="Threading\src\ThreadingManagerImpl.h">
       <Filter>Threading\src</Filter>
     </ClInclude>
-    <ClInclude Include="Sound\src\SoundBase\SoundBase.h">
-      <Filter>Sound\src\SoundBase</Filter>
-    </ClInclude>
     <ClInclude Include="Threading\Semaphore.h">
       <Filter>Threading\include</Filter>
     </ClInclude>
@@ -222,9 +171,6 @@
     </ClInclude>
     <ClInclude Include="Math\Matrix.h">
       <Filter>Math\include</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound\EffectParameter.h">
-      <Filter>Sound\include</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\src\Release.h">
       <Filter>Graphics\src</Filter>
@@ -319,48 +265,6 @@
     <ClInclude Include="Base\Impl\SharedPtrImpl.h">
       <Filter>Base\include\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Shader\src\ShaderBase.h">
-      <Filter>Shader\src</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\CircleShadow.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\CocTrans.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\DefferdPost.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\DefferdShading.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Effect.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Fog.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Lambert.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Outline.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\ShadowMap.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\ShadowScene.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\SkinMesh.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Toon.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\hlsl\Canvas.h">
-      <Filter>Shader\hlsl</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\GraphicsManager.h">
       <Filter>Graphics\include</Filter>
     </ClInclude>
@@ -430,25 +334,49 @@
     <ClInclude Include="Input\Joystick.h">
       <Filter>Input\include</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\ShaderDesc.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\EffectParameter.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\MusicSource.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Player.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\AudioEffect.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\AudioEffectImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\DecoderBase.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\MusicSourceImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\PlayerImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\SoundDataCreate.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\Wave\Wave.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\SoundBase\SoundBase.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\SoundBase\SoundBaseImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base\src\Halt.cpp">
       <Filter>Base\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound\src\SoundBase\SoundBase.cpp">
-      <Filter>Sound\src\SoundBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound\src\Wave\Wave.cpp">
-      <Filter>Sound\src\Wave</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound\src\AudioEffect.cpp">
-      <Filter>Sound\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound\src\MusicSource.cpp">
-      <Filter>Sound\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound\src\Player.cpp">
-      <Filter>Sound\src</Filter>
     </ClCompile>
     <ClCompile Include="Window\src\Window.cpp">
       <Filter>Window\src</Filter>
@@ -531,9 +459,6 @@
     <ClCompile Include="Base\src\MemoryManager.cpp">
       <Filter>Base\src</Filter>
     </ClCompile>
-    <ClCompile Include="Shader\src\ShaderBase.cpp">
-      <Filter>Shader\src</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\src\GraphicsManager.cpp">
       <Filter>Graphics\src</Filter>
     </ClCompile>
@@ -563,6 +488,21 @@
     </ClCompile>
     <ClCompile Include="Input\src\Joystick.cpp">
       <Filter>Input\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\AudioEffect.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\MusicSource.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\Player.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\Wave\Wave.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\SoundBase\SoundBase.cpp">
+      <Filter>Sound\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

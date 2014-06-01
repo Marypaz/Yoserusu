@@ -51,8 +51,8 @@ mMoveSceneCount( 0 ){
 	m.setWorldMatrix(world);
 	m.setProjectionMatrix( proj);
 
-	mAuthe = new Authe();
-	mBack = new BackGround();
+	mAuthe = NEW Authe();
+	mBack = NEW BackGround();
 }
 
 AutheScene::~AutheScene(){
@@ -62,9 +62,13 @@ AutheScene::~AutheScene(){
 }
 
 void AutheScene::update( Parent* parent ){
+
+#if _DEBUG
 	if( Mashiro::Input::Manager::instance().mouse().isTriggered( Input::Mouse::BUTTON_LEFT ) ){
 		parent->moveTo( Parent::NEXT_TITLE );
 	}
+#endif
+
 	autheUpdate( parent );
 
 	autheDraw();
